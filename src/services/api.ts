@@ -1,4 +1,3 @@
-
 import { toast } from "sonner";
 import mockResponses from "../mocks/responses.json";
 import { API_CONFIG } from "../config/api.config";
@@ -36,7 +35,17 @@ async function apiCall<T>(
     await delay(800);
     
     if (API_CONFIG.useMockData) {
-      // 使用模拟数据
+      // Mock login validation
+      if (endpoint === "/user/login") {
+        const loginData = data as UserLoginRequest;
+        if (loginData.username === "root" && loginData.password === "root123") {
+          return mockResponses[endpoint].success as T;
+        } else {
+          return mockResponses[endpoint].failure as T;
+        }
+      }
+      
+      // For other endpoints, use standard mock responses
       const mockResponse = mockResponses[endpoint];
       if (!mockResponse) {
         throw new Error("Mock data not found for endpoint: " + endpoint);
