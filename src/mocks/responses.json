@@ -1,0 +1,88 @@
+
+{
+  "/user/login": {
+    "code": 200,
+    "message": "登录成功",
+    "data": {
+      "token": "mock-jwt-token",
+      "userId": "mock-user-123"
+    }
+  },
+  "/document/upload": {
+    "code": 200,
+    "message": "上传成功",
+    "data": {
+      "documentId": "doc-001"
+    }
+  },
+  "/search": {
+    "code": 200,
+    "message": "检索成功",
+    "data": {
+      "results": [
+        {
+          "documentId": "doc-001",
+          "documentName": "测试文档1",
+          "score": 0.95,
+          "merkleProof": ["hash1", "hash2", "hash3"]
+        },
+        {
+          "documentId": "doc-002",
+          "documentName": "测试文档2",
+          "score": 0.85,
+          "merkleProof": ["hash4", "hash5", "hash6"]
+        }
+      ]
+    }
+  },
+  "/verify": {
+    "code": 200,
+    "message": "验证成功",
+    "data": {
+      "verified": true,
+      "rootHash": "mock-root-hash-123"
+    }
+  },
+  "/document/decrypt": {
+    "code": 200,
+    "message": "解密成功",
+    "data": {
+      "documentName": "测试文档",
+      "content": "这是测试文档的内容，包含了一些关键词如区块链、加密、搜索等。"
+    }
+  },
+  "/document/list": {
+    "code": 200,
+    "message": "获取成功",
+    "data": {
+      "total": 25,
+      "documents": [
+        {
+          "documentId": "doc-001",
+          "documentName": "测试文档1",
+          "uploadTime": "2025-04-28T10:00:00.000Z"
+        },
+        {
+          "documentId": "doc-002",
+          "documentName": "测试文档2",
+          "uploadTime": "2025-04-28T09:00:00.000Z"
+        }
+      ]
+    }
+  },
+  "/blockchain/rootHash": {
+    "code": 200,
+    "message": "获取成功",
+    "data": {
+      "rootHash": "mock-root-hash-456",
+      "timestamp": "2025-04-28T12:00:00.000Z"
+    }
+  },
+  "/index/create": {
+    "code": 200,
+    "message": "索引创建成功",
+    "data": {
+      "indexed": true
+    }
+  }
+}
