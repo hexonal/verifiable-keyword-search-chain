@@ -1,6 +1,5 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Blockchain, Search, Lock, Database } from "lucide-react";
+import { Database, Search, Lock, FileText } from "lucide-react";
 
 const About = () => {
   return (
@@ -11,7 +10,7 @@ const About = () => {
         <Card className="border-border/50 bg-card/50">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Blockchain className="h-5 w-5 text-primary" />
+              <Database className="h-5 w-5 text-primary" />
               系统简介
             </CardTitle>
           </CardHeader>

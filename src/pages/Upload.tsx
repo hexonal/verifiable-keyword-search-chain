@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { api } from "../services/api";
 import { toast } from "sonner";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Upload as UploadIcon, File, Database, Index } from "lucide-react";
+import { Upload as UploadIcon, File, Database, FileText } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 const Upload = () => {
@@ -169,7 +168,7 @@ const Upload = () => {
                     disabled={isIndexing}
                     className="gap-2"
                   >
-                    <Index className="h-4 w-4" />
+                    <FileText className="h-4 w-4" />
                     {isIndexing ? "索引中..." : "创建索引"}
                   </Button>
                 </>

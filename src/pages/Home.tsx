@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Database, Search, Upload, Lock, Index, File } from "lucide-react";
+import { Database, Search, Upload, Lock, FileText, File } from "lucide-react";
 import { api } from "../services/api";
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
@@ -94,7 +93,7 @@ const Home = () => {
             
             <div className="bg-card/50 p-6 rounded-xl border border-border/50 backdrop-blur-sm">
               <div className="bg-primary/10 w-12 h-12 rounded-lg mb-4 flex items-center justify-center">
-                <Index className="text-primary h-6 w-6" />
+                <FileText className="text-primary h-6 w-6" />
               </div>
               <h3 className="text-xl font-bold mb-2">索引构建</h3>
               <p className="text-muted-foreground">

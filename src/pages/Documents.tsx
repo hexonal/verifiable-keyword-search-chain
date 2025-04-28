@@ -1,11 +1,10 @@
-
 import { useState, useEffect } from "react";
 import { api } from "../services/api";
 import { Document } from "../types/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { FileText, Search, Index, ArrowLeft, ArrowRight } from "lucide-react";
+import { FileText, Search, Database, ArrowLeft, ArrowRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -191,7 +190,7 @@ const Documents = () => {
                                 onClick={() => handleCreateIndex(document.documentId)}
                                 className="h-8"
                               >
-                                <Index className="h-3 w-3 mr-1" />
+                                <Database className="h-3 w-3 mr-1" />
                                 索引
                               </Button>
                             </div>
