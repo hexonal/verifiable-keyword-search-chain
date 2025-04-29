@@ -1,3 +1,4 @@
+
 import { toast } from "sonner";
 import mockResponses from "../mocks/responses.json";
 import { API_CONFIG } from "../config/api.config";
@@ -35,24 +36,27 @@ async function apiCall<T>(
     await delay(800);
     
     if (API_CONFIG.useMockData) {
+      // Extract the endpoint without the /api prefix for mock data
+      const mockEndpoint = endpoint.replace('/api', '');
+      
       // Mock login validation
-      if (endpoint === "/user/login") {
+      if (mockEndpoint === "/user/login") {
         const loginData = data as UserLoginRequest;
         if (loginData.username === "root" && loginData.password === "root123") {
-          return mockResponses[endpoint].success as T;
+          return mockResponses[mockEndpoint].success as T;
         } else {
-          return mockResponses[endpoint].failure as T;
+          return mockResponses[mockEndpoint].failure as T;
         }
       }
       
       // For other endpoints, use standard mock responses
-      const mockResponse = mockResponses[endpoint];
+      const mockResponse = mockResponses[mockEndpoint];
       if (!mockResponse) {
-        throw new Error("Mock data not found for endpoint: " + endpoint);
+        throw new Error("Mock data not found for endpoint: " + mockEndpoint);
       }
       
       // 对于某些endpoints，需要动态生成响应
-      if (endpoint === "/search" && data?.keywords) {
+      if (mockEndpoint === "/search" && data?.keywords) {
         mockResponse.data.results = mockResponse.data.results.map(result => ({
           ...result,
           documentName: `${result.documentName} - 包含${data.keywords.join(',')}关键词`,
@@ -90,26 +94,26 @@ async function apiCall<T>(
 // API functions mapped to endpoints
 export const api = {
   login: (data: UserLoginRequest) => 
-    apiCall<UserLoginResponse>("/user/login", "POST", data),
+    apiCall<UserLoginResponse>("/api/user/login", "POST", data),
     
   uploadDocument: (data: DocumentUploadRequest) => 
-    apiCall<DocumentUploadResponse>("/document/upload", "POST", data),
+    apiCall<DocumentUploadResponse>("/api/document/upload", "POST", data),
     
   search: (data: SearchRequest) => 
-    apiCall<SearchResponse>("/search", "POST", data),
+    apiCall<SearchResponse>("/api/search", "POST", data),
     
   verify: (data: VerifyRequest) => 
-    apiCall<VerifyResponse>("/verify", "POST", data),
+    apiCall<VerifyResponse>("/api/verify", "POST", data),
     
   decrypt: (data: DecryptRequest) => 
-    apiCall<DecryptResponse>("/document/decrypt", "POST", data),
+    apiCall<DecryptResponse>("/api/document/decrypt", "POST", data),
     
   getDocumentList: (data: DocumentListRequest) => 
-    apiCall<DocumentListResponse>("/document/list", "POST", data),
+    apiCall<DocumentListResponse>("/api/document/list", "POST", data),
     
   getRootHash: () => 
-    apiCall<RootHashResponse>("/blockchain/rootHash", "POST"),
+    apiCall<RootHashResponse>("/api/blockchain/rootHash", "POST"),
     
   createIndex: (data: CreateIndexRequest) => 
-    apiCall<CreateIndexResponse>("/index/create", "POST", data),
+    apiCall<CreateIndexResponse>("/api/index/create", "POST", data),
 };
