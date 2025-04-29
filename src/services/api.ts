@@ -1,10 +1,11 @@
-
 import { toast } from "sonner";
 import mockResponses from "../mocks/responses.json";
 import { API_CONFIG } from "../config/api.config";
 import {
   UserLoginRequest,
   UserLoginResponse,
+  UserRegisterRequest,
+  UserRegisterResponse,
   DocumentUploadRequest,
   DocumentUploadResponse,
   SearchRequest,
@@ -46,6 +47,16 @@ async function apiCall<T>(
           return mockResponses[mockEndpoint].success as T;
         } else {
           return mockResponses[mockEndpoint].failure as T;
+        }
+      }
+
+      // Mock register validation
+      if (mockEndpoint === "/user/register") {
+        const registerData = data as UserRegisterRequest;
+        if (registerData.username === "taken") {
+          return mockResponses[mockEndpoint].failure as T;
+        } else {
+          return mockResponses[mockEndpoint].success as T;
         }
       }
       
@@ -96,6 +107,9 @@ export const api = {
   login: (data: UserLoginRequest) => 
     apiCall<UserLoginResponse>("/api/user/login", "POST", data),
     
+  register: (data: UserRegisterRequest) => 
+    apiCall<UserRegisterResponse>("/api/user/register", "POST", data),
+  
   uploadDocument: (data: DocumentUploadRequest) => 
     apiCall<DocumentUploadResponse>("/api/document/upload", "POST", data),
     

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -82,10 +82,16 @@ const Login = () => {
               </div>
             </div>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex flex-col space-y-3">
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "登录中..." : "登录"}
             </Button>
+            <p className="text-center text-sm">
+              还没有账户？{" "}
+              <Link to="/register" className="text-primary hover:underline">
+                立即注册
+              </Link>
+            </p>
           </CardFooter>
         </form>
       </Card>

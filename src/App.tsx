@@ -10,6 +10,7 @@ import { Layout } from "./components/Layout";
 // Pages
 import Home from "./pages/Index";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Search from "./pages/Search";
 import Upload from "./pages/Upload";
 import Documents from "./pages/Documents";
@@ -30,6 +31,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/search" element={<Search />} />
               <Route path="/upload" element={<Upload />} />
               <Route path="/documents" element={<Documents />} />
