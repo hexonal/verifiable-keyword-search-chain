@@ -1,4 +1,3 @@
-
 export interface UserLoginRequest {
   username: string;
   password: string;
@@ -16,15 +15,11 @@ export interface UserLoginResponse {
 export interface UserRegisterRequest {
   username: string;
   password: string;
-  email: string;
 }
 
 export interface UserRegisterResponse {
   code: number;
   message: string;
-  data: {
-    userId: string;
-  };
 }
 
 export interface DocumentUploadRequest {

@@ -6,14 +6,13 @@ import { api } from "../services/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Database, Lock, Mail, User } from "lucide-react";
+import { Database, Lock, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 interface RegisterFormData {
   username: string;
   password: string;
   confirmPassword: string;
-  email: string;
 }
 
 const Register = () => {
@@ -41,7 +40,6 @@ const Register = () => {
       const response = await api.register({
         username: data.username,
         password: data.password,
-        email: data.email,
       });
       
       if (response.code === 200) {
@@ -89,32 +87,6 @@ const Register = () => {
               </div>
               {errors.username && (
                 <p className="text-sm text-destructive">{errors.username.message}</p>
-              )}
-            </div>
-            
-            <div className="space-y-2">
-              <label className="text-sm font-medium leading-none" htmlFor="email">
-                邮箱
-              </label>
-              <div className="relative">
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="输入邮箱地址"
-                  className="bg-background/50"
-                  disabled={isLoading}
-                  {...register("email", { 
-                    required: "邮箱不能为空",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "邮箱格式不正确"
-                    }
-                  })}
-                />
-                <Mail className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              </div>
-              {errors.email && (
-                <p className="text-sm text-destructive">{errors.email.message}</p>
               )}
             </div>
             
